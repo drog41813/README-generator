@@ -54,7 +54,18 @@ console.log(response)
 );
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// TODO: Create a function to write README file
+function writeToFile(fileName, data) {
+    const content = typeof date ==='string' ? data : JSON.stringify(data, null, 2);
+    fs.writeFile(fileName, content, 'utf8', (err) =>{
+        if(err){
+            console.error('error making file: ', err);
+        }
+        else{
+            console.log('File successfully created: ', fileName);
+        }
+    });
+}
 
 // TODO: Create a function to initialize app
 function init() {}

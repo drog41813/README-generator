@@ -54,7 +54,6 @@ console.log(response)
 );
 
 // TODO: Create a function to write README file
-// TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     const content = typeof date ==='string' ? data : JSON.stringify(data, null, 2);
     fs.writeFile(fileName, content, 'utf8', (err) =>{
@@ -68,7 +67,43 @@ function writeToFile(fileName, data) {
 }
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer
+    .prompt(questions)
+    .then((responses)=>{
+        const readMEContent = generateReadMEContent(responses);
+        writeToFile('README.md', readMEContent);
+    })
+    .catch((error)=>{
+        console.error('error:', error);
+    })
+}
+function generateReadMEContent(responses) {
+    return `
+  # ${responses.title}
+  ## Description
+  ${responses.Description}
+  ## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [License](#license)
+  - [Questions](#questions)
+  ## Installation
+  ${responses.Installation}
+  ## Usage
+  ${responses.usage}
+  ## Contributing
+  ${responses.contributing}
+  ## Tests
+  ${responses.tests}
+  ## License
+  This project is licensed under the ${responses.licenses} license.
+  ## Questions
+  For any questions about the project, please feel free to reach out to [${responses.github}](https://github.com/${responses.github}) or contact via email at ${responses.email}.
+  `;
+  }
 
 // Function call to initialize app
 init();

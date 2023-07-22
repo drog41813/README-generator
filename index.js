@@ -1,21 +1,57 @@
 // TODO: Include packages needed for this application
-var inquirer = require('inquirer');
-inquirer
-    .prompt([
-
-    ])
-    .then((answers) => {
-
-    })
-    .catch((error) => {
-        if (error.isTtyError) {
-
-        } else {
-
-        }
-    });
+const inquirer = require('inquirer');
+const fs = require('fs')
 // TODO: Create an array of questions for user input
-const questions = ["Description", "Table of Contents", "Installation", "Usage", "License", "Contributing", "Tests", "Questions"];
+const questions = [
+    {
+        type: 'input',
+        name: 'title',
+        message: 'What do you want the name of the title?',
+    },
+    {
+        type: 'input',
+        name: 'Description',
+        message: 'What is the description of your project',
+    },
+    {
+        type: 'input',
+        name: 'Installation',
+        message: 'Enter installation details',
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'enter usage informaiton',
+    },
+    {
+        type: 'input',
+        name: 'contributing',
+        message: 'enter any contributions',
+    },
+    {
+        type: 'input',
+        name: 'tests',
+        message: 'enter any test instructions for the project',
+    },
+    {
+        type: 'list',
+        name: 'licenses',
+        message: 'What type of license do you want for your project',
+        choices: ['MIT', 'GPLv3', 'Apache', 'unlicense', 'BSD'],
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'enter your GitHub username',
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'enter your email address',
+    },
+].then((response)=>
+console.log(response)
+);
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
